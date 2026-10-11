@@ -1,0 +1,34 @@
+# docker-compose.yml
+# Phishing Lab — Gophish + MailHog
+#
+# Spins up:
+#   - gophish: the phishing simulation framework (admin UI on :3333)
+#   - mailhog: a local SMTP catcher for safe, fully offline email testing
+#
+# Nothing here sends mail to the real internet. For real SMTP delivery
+# (sandboxed), see docs/sending-profiles.md for a Mailtrap-based profile
+# instead — no extra container needed for that part.
+
+services:
+  gophish:
+    image: gophish/gophish:latest
+    container_name: gophish
+    restart: unless-stopped
+    ports:
+      - "3333:3333"   # Admin UI (HTTPS)
+      - "8080:80"     # Phishing landing pages (HTTP)
+      - "8443:443"    # Phishing landing pages (HTTPS) - optional
+    volumes:
+      - gophish_data:/opt/gophish/data
+      - ./config.json:/opt/gophish/config.json
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: mailhog
+    restart: unless-stopped
+    ports:
+      - "1025:1025"   # SMTP port - Gophish sends here
+      - "8025:8025"   # Web UI - view captured emails here
+
+volumes:
+  gophish_data:
