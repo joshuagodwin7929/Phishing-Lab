@@ -1,16 +1,16 @@
 # Sending Profiles
 
 I tested two delivery paths with this lab. Both are legitimate ways to run
-Gophish safely — which one to use depends on what you're actually testing.
+Gophish safely which one to use depends on what you're actually testing.
 
-## Option A — MailHog (fully local, no real delivery)
+## Option A MailHog (fully local, no real delivery)
 
 Good for: testing templates, landing pages, and campaign mechanics without
 anything touching the real internet. This is the default/safest option and
 what the `docker-compose.yml` in this repo spins up out of the box.
 
 **How it works:** MailHog runs as a container on the same Docker network as
-Gophish and acts as a dummy SMTP server — it accepts mail and holds onto it,
+Gophish and acts as a dummy SMTP server. It accepts mail and holds onto it,
 but never actually relays anywhere.
 
 **Gophish Sending Profile settings:**
