@@ -1,11 +1,11 @@
 # Phishing Lab
 
-A self-hosted phishing simulation lab built with [Gophish](https://getgophish.com/),
-running in Docker, with two different email delivery paths for testing —
+This is self-hosted phishing simulation lab built with [Gophish](https://getgophish.com/),
+running in my Docker, with two different email delivery paths for testing, 
 one fully local, one real SMTP over the internet to a sandboxed inbox.
 
 I'm building this as part of a broader SOC / detection-engineering
-portfolio. The goal isn't just "stand up Gophish" — it's having a
+portfolio. The goal isn't just "stand up Gophish", it's having a
 repeatable, documented initial-access vector I can run campaigns from and
 validate detection coverage against, alongside my other lab projects (SIEM
 lab, Sigma rule detection-as-code, purple-team automation).
@@ -106,7 +106,7 @@ Full writeups, with the actual commands and output: [docs/troubleshooting.md](do
 
 ## Credentials and secrets
 
-Nothing in this repo contains real credentials, IPs, or passwords —
+Nothing in this repo contains real credentials, IPs, or passwords 
 `config.json`, the Gophish database, and any TLS certs are excluded via
 `.gitignore`. If you fork this, generate your own Mailtrap sandbox and your
 own `config.json` rather than expecting either to be included here.
