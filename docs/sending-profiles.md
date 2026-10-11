@@ -3,7 +3,7 @@
 I tested two delivery paths with this lab. Both are legitimate ways to run
 Gophish safely which one to use depends on what you're actually testing.
 
-## Option A MailHog (fully local, no real delivery)
+## Option A: MailHog (fully local, no real delivery)
 
 Good for: testing templates, landing pages, and campaign mechanics without
 anything touching the real internet. This is the default/safest option and
@@ -35,7 +35,7 @@ http://<your-server-ip>:8025
 (Must be `http://`, not `https://` — MailHog's UI doesn't serve TLS. See
 [troubleshooting.md](troubleshooting.md) if your browser auto-upgrades it.)
 
-## Option B — Mailtrap (real SMTP, sandboxed inbox)
+## Option B: Mailtrap (real SMTP, sandboxed inbox)
 
 Good for: testing the actual delivery path — real DNS resolution, real
 outbound SMTP auth, real network egress — without risking a personal mailbox
