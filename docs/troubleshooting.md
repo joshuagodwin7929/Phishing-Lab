@@ -8,7 +8,7 @@ Real issues I actually hit while building this lab, kept here so future-me
 **Symptom:** `docker compose up -d` fails trying to pull the image, with a
 DNS lookup timeout buried in the error.
 
-**Cause:** This isn't a Docker problem — it's the host's DNS resolver
+**Cause:** This isn't a Docker problem; it's the host's DNS resolver
 failing. My server's `systemd-resolved` was pointed at an internal lab DNS
 server (my AD lab's domain controller) that has no route to resolve public
 internet domains like `registry-1.docker.io`.
@@ -49,7 +49,7 @@ a reboot (`/etc/netplan/*.yaml` → `nameservers: addresses:`), then
 hostnames (like an AD lab domain), keep that as a secondary resolver rather
 than replacing it outright.
 
-## "unexpected end of JSON input" — Gophish container stuck restarting
+## "unexpected end of JSON input": Gophish container stuck restarting
 
 **Symptom:** `docker compose up -d` succeeds, but `docker ps` shows the
 `gophish` container cycling through `Restarting (1)`. Logs show:
@@ -73,18 +73,18 @@ cat config.json             # confirm it actually has content now
 docker compose up -d
 ```
 
-This is also exactly why `config.json.example` exists in this repo — copy
+This is also exactly why `config.json.example` exists in this repo: copy
 it manually instead of letting Docker improvise one for you.
 
 ## Lost the admin password after changing it
 
 **Symptom:** Changed the admin password, then forgot it. Gophish has no
-"forgot password" email flow — there's no SMTP configured for that by
+"forgot password" email flow. There is no SMTP configured for that by
 default, and even if there were, it's not a feature it ships with.
 
 **Fix:** reset the password hash directly in the SQLite database. This
 works because I have root on the host and full access to the container's
-volume — it is **not** something that generalizes to resetting someone
+volume. It is **not** something that generalizes to resetting someone
 else's account on a system you don't control (e.g. a real email provider).
 
 ```bash
@@ -103,7 +103,7 @@ docker cp gophish.db.bak gophish:/opt/gophish/gophish.db
 docker start gophish
 ```
 
-Note: the column is `hash`, not `password` — check the schema first with
+Note: the column is `hash`, not `password`; check the schema first with
 `sqlite3 gophish.db.bak ".schema users"` if you're on a different Gophish
 version and the column names have changed.
 
@@ -125,7 +125,7 @@ when sending a test email, even though the field looks fine.
 
 **Cause:** Gophish validates this field strictly against `Name <email>`
 syntax. In my case the fastest fix was retyping the field manually instead
-of pasting it, in case of a stray invisible character — but if you hit this,
+of pasting it, in case of a stray invisible character, but if you hit this,
 first just confirm the field is literally in the form:
 
 ```
