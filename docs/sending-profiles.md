@@ -1,7 +1,7 @@
 # Sending Profiles
 
 I tested two delivery paths with this lab. Both are legitimate ways to run
-Gophish safely which one to use depends on what you're actually testing.
+Gophish safely. Which one to use depends on what you're actually testing.
 
 ## Option A: MailHog (fully local, no real delivery)
 
@@ -32,13 +32,13 @@ can reference MailHog by its service name (`mailhog`) instead of an IP.
 http://<your-server-ip>:8025
 ```
 
-(Must be `http://`, not `https://` — MailHog's UI doesn't serve TLS. See
+(Must be `http://`, not `https://`; MailHog's UI doesn't serve TLS. See
 [troubleshooting.md](troubleshooting.md) if your browser auto-upgrades it.)
 
 ## Option B: Mailtrap (real SMTP, sandboxed inbox)
 
-Good for: testing the actual delivery path — real DNS resolution, real
-outbound SMTP auth, real network egress — without risking a personal mailbox
+Good for: testing the actual delivery path (real DNS resolution, real
+outbound SMTP auth, real network egress) without risking a personal mailbox
 getting flagged, and without the risk of real phishing mail landing in
 someone's actual inbox.
 
@@ -54,14 +54,14 @@ someone's actual inbox.
 | Field | Value |
 |---|---|
 | Name | `Mailtrap Test` |
-| From | `Display Name <user@example.com>` — must be valid `Name <email>` syntax |
+| From | `Display Name <user@example.com>`, must be valid `Name <email>` syntax |
 | Host | `sandbox.smtp.mailtrap.io:2525` |
-| Username | *(from your Mailtrap sandbox — not committed to this repo)* |
-| Password | *(from your Mailtrap sandbox — not committed to this repo)* |
+| Username | *(from your Mailtrap sandbox, not committed to this repo)* |
+| Password | *(from your Mailtrap sandbox, not committed to this repo)* |
 | Ignore Certificate Errors | checked |
 
-**Viewing captured mail:** back in your Mailtrap sandbox's inbox view —
-every send shows up there with full headers, spam-score analysis, and a
+**Viewing captured mail:** back in your Mailtrap sandbox's inbox view.
+Every send shows up there with full headers, spam-score analysis, and a
 rendered preview, regardless of what recipient address you used.
 
 > **A note on credentials:** Mailtrap sandbox credentials are tied to your
@@ -76,5 +76,5 @@ rendered preview, regardless of what recipient address you used.
   detection use case → **Mailtrap**
 - Sending to a real inbox you control, for a fully end-to-end test → a real
   SMTP relay (Gmail/Outlook with an app password, or an internal mail
-  server) — not covered in this repo, but the Sending Profile fields work
+  server), not covered in this repo, but the Sending Profile fields work
   the same way once you have real SMTP credentials.
